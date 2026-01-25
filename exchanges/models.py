@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Q
 from skills.models import Skill
 
+
 class ExchangeRequest(models.Model):
     STATUS_PENDING = "pending"
     STATUS_ACCEPTED = "accepted"
@@ -26,7 +27,7 @@ class ExchangeRequest(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=["skill", "requester"],
-                condition=Q(status=STATUS_PENDING),
+                condition=Q(status="pending"),
                 name="unique_pending_request_per_skill_requester",
             )
         ]
