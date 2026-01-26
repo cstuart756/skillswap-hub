@@ -17,22 +17,30 @@
             <div class="list-group-item">
                 <div class="d-flex justify-content-between align-items-start gap-3">
                     <div>
-                        <div class="fw-semibold"><a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a></div>
-                        <div class="text-muted small">From {{ r.requester.username }} · {{ r.created_at|date:"j M Y,
-                            H:i" }}</div>
+                        <div class="fw-semibold">
+                            <a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a>
+                        </div>
+                        <div class="text-muted small">
+                            From {{ r.requester.username }} · {{ r.created_at|date:"j M Y, H:i" }}
+                        </div>
                     </div>
+
                     <div class="text-end">
-                        {% include "includes/_status_badge.html" with status=r.status
-                        badge_id="receivedHelp"|add:r.id|stringformat:"s" %}
+                        {# Build a safe unique badge_id by converting the counter to string first #}
+                        {% with rid=forloop.counter|stringformat:"s" %}
+                        {% include "includes/_status_badge.html" with status=r.status badge_id="receivedHelp"|add:rid %}
+                        {% endwith %}
                     </div>
                 </div>
 
                 {% if r.status == "pending" %}
                 <div class="d-flex gap-2 mt-3">
-                    <form method="post" action="{% url 'exchange_request_accept' r.id %}">{% csrf_token %}
+                    <form method="post" action="{% url 'exchange_request_accept' r.id %}">
+                        {% csrf_token %}
                         <button class="btn btn-success btn-sm" type="submit">Accept</button>
                     </form>
-                    <form method="post" action="{% url 'exchange_request_reject' r.id %}">{% csrf_token %}
+                    <form method="post" action="{% url 'exchange_request_reject' r.id %}">
+                        {% csrf_token %}
                         <button class="btn btn-outline-danger btn-sm" type="submit">Reject</button>
                     </form>
                 </div>
@@ -57,19 +65,25 @@
             <div class="list-group-item">
                 <div class="d-flex justify-content-between align-items-start gap-3">
                     <div>
-                        <div class="fw-semibold"><a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a></div>
-                        <div class="text-muted small">To {{ r.skill.owner.username }} · {{ r.created_at|date:"j M Y,
-                            H:i" }}</div>
+                        <div class="fw-semibold">
+                            <a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a>
+                        </div>
+                        <div class="text-muted small">
+                            To {{ r.skill.owner.username }} · {{ r.created_at|date:"j M Y, H:i" }}
+                        </div>
                     </div>
+
                     <div class="text-end">
-                        {% include "includes/_status_badge.html" with status=r.status
-                        badge_id="sentHelp"|add:r.id|stringformat:"s" %}
+                        {% with sid=forloop.counter|stringformat:"s" %}
+                        {% include "includes/_status_badge.html" with status=r.status badge_id="sentHelp"|add:sid %}
+                        {% endwith %}
                     </div>
                 </div>
 
                 {% if r.status == "pending" %}
                 <div class="d-flex gap-2 mt-3">
-                    <form method="post" action="{% url 'exchange_request_cancel' r.id %}">{% csrf_token %}
+                    <form method="post" action="{% url 'exchange_request_cancel' r.id %}">
+                        {% csrf_token %}
                         <button class="btn btn-outline-secondary btn-sm" type="submit">Cancel</button>
                     </form>
                 </div>
