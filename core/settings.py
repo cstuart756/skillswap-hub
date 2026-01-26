@@ -11,8 +11,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-only-insecure-secret-key-change
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 
 # Heroku app name (used for sensible defaults)
-HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "skliiswap-hub-cstuart756")
-HEROKU_DEFAULT_HOST = f"{skliiswap-hub-cstuart756}.herokuapp.com"
+HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "skillswap-hub-cstuart756")
+HEROKU_DEFAULT_HOST = f"{skillswap-hub-cstuart756}.herokuapp.com"
 
 # -----------------------------------------------------------------------------
 # Hosts / CSRF
