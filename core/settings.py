@@ -12,7 +12,8 @@ DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 
 # Heroku app name (used for sensible defaults)
 HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "skillswap-hub-cstuart756")
-HEROKU_DEFAULT_HOST = f"{skillswap-hub-cstuart756}.herokuapp.com"
+HEROKU_DEFAULT_HOST = f"{HEROKU_APP_NAME}.herokuapp.com"
+
 
 # -----------------------------------------------------------------------------
 # Hosts / CSRF
