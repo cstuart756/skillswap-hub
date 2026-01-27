@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request exchange</title>
+</head>
+
+<body>
+    <a href="#main">Skip to content</a>
+    <main id="main">
+        <h1>Request exchange for {{ skill.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Submit request</button>
+        </form>
+    </main>
+</body>
+
+</html>

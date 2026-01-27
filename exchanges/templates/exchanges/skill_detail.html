@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ skill.title }}</title>
+</head>
+
+<body>
+    <a href="#main">Skip to content</a>
+    <main id="main">
+        <h1>{{ skill.title }}</h1>
+        <p>{{ skill.description }}</p>
+
+        {% if user.is_authenticated and user.id != skill.owner_id %}
+        <form method="post" action="{% url 'exchange_request_create' skill.id %}">
+            {% csrf_token %}
+            <button type="submit">Request exchange</button>
+        </form>
+        {% endif %}
+    </main>
+</body>
+
+</html>

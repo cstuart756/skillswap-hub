@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skills</title>
+</head>
+
+<body>
+    <a href="#main">Skip to content</a>
+    <main id="main">
+        <h1>Skills</h1>
+        <ul>
+            {% for skill in skills %}
+            <li>
+                <a href="{% url 'skill_detail' skill.id %}">{{ skill.title }}</a>
+            </li>
+            {% empty %}
+            <li>No skills yet.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+
+</html>
