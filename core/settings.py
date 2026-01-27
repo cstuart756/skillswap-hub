@@ -18,26 +18,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # CORE SETTINGS
 # =========================
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-insecure-secret-key-change-me")
-
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 # =========================
 # HOSTS / SECURITY
 # =========================
-# Important: keep ONE ALLOWED_HOSTS definition (no duplicates).
-ALLOWED_HOSTS = [h.strip() for h in os.getenv(
-    "ALLOWED_HOSTS",
-    "127.0.0.1,localhost,.herokuapp.com,skillswap-hub-cstuart756.herokuapp.com,skillswap-hub-cstuart756-df93470f789d.herokuapp.com"
-).split(",") if h.strip()]
-
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.getenv(
+        "ALLOWED_HOSTS",
+        "127.0.0.1,localhost,.herokuapp.com,skillswap-hub-cstuart756.herokuapp.com,skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
+    ).split(",")
+    if h.strip()
+]
 
 # CSRF trusted origins (must include scheme)
-CSRF_TRUSTED_ORIGINS = []
 trusted = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "")
 if trusted:
     CSRF_TRUSTED_ORIGINS = [o.strip() for o in trusted.split(",") if o.strip()]
 else:
-    # Default to your Heroku URL so forms work when deployed
     CSRF_TRUSTED_ORIGINS = [
         "https://skillswap-hub-cstuart756.herokuapp.com",
         "https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
@@ -99,9 +98,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # DATABASE
 # =========================
 db_url = os.getenv("DATABASE_URL", "")
-
 if db_url:
-    # Heroku Postgres
     DATABASES = {
         "default": dj_database_url.config(
             default=db_url,
@@ -110,7 +107,6 @@ if db_url:
         )
     }
 else:
-    # Local SQLite
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -148,22 +144,24 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # =========================
-# STATIC FILES (WHITENOISE)
-# =========================
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# =========================
 # STATIC FILES (Heroku / WhiteNoise)
 # =========================
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STORAGES = {
-    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
-    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
-}
+# If you have a folder called "static" in the project root, keep this.
+# If you DO NOT have BASE_DIR/static, you can remove these 2 lines safely.
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Django 4.2+ recommended storage configuration (Django 6 uses this style)
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # =========================
 # PROXY / SSL (HEROKU)
@@ -171,6 +169,8 @@ STORAGES = {
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Only force HTTPS + secure cookies in production
-SECURE_SSL_REDIRECT = (not DEBUG) and (os.getenv("DJANGO_SECURE_SSL_REDIRECT", "True").lower() == "true")
+SECURE_SSL_REDIRECT = (not DEBUG) and (
+    os.getenv("DJANGO_SECURE_SSL_REDIRECT", "True").lower() == "true"
+)
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
