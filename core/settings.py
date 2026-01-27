@@ -106,13 +106,6 @@ TIME_ZONE = "Europe/London"
 USE_I18N = True
 USE_TZ = True
 
-    DATABASES = { 
-        "default": dj_database_url.config(
-            default=os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3"),
-            conn_max_age=600,
-            ssl_require=False,
-        )
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
