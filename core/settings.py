@@ -28,6 +28,7 @@ trusted = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "")
 if trusted:
     CSRF_TRUSTED_ORIGINS = [o.strip() for o in trusted.split(",") if o.strip()]
 ALLOWED_HOSTS.append("skillswap-hub-cstuart756.herokuapp.com")
+ALLOWED_HOSTS.append("skillswap-hub-cstuart756-df93470f789d.herokuapp.com")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
