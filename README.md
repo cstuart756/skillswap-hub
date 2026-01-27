@@ -118,6 +118,54 @@ Key relationships:
 - Exchange requests link a requester (User) to a specific skill
 - Categories can contain multiple skills
 
+## User Stories (MoSCoW)
+
+### Must Have
+
+1. **Register an account**
+   - As a new user, I want to create an account so I can list and request skills.
+2. **Log in and log out**
+   - As a user, I want to log in and log out so my account stays secure.
+3. **Browse skills**
+   - As a visitor, I want to browse available skills so I can find an exchange.
+4. **View skill details**
+   - As a user, I want to view a skill’s details so I can decide whether to request it.
+5. **Create a skill listing**
+   - As a user, I want to create a skill listing so I can offer my skills to others.
+6. **Request a skill exchange**
+   - As a user, I want to request a skill exchange so I can trade with another user.
+7. **Manage requests**
+   - As a skill owner, I want to accept or reject requests so I can control who I exchange with.
+
+### Should Have
+
+1. **Edit and delete skills**
+   - As a user, I want to edit or remove my listings so they stay accurate.
+2. **View my request dashboard**
+   - As a user, I want to see sent and received requests so I can manage exchanges.
+3. **Filter and sort skills**
+   - As a user, I want to filter and sort skills so I can find relevant listings faster.
+4. **Status feedback**
+   - As a user, I want to see clear request status (pending/accepted/rejected/cancelled) so I know what’s happening.
+
+### Could Have
+
+1. **Categories for skills**
+   - As a user, I want to categorize skills so browsing is easier.
+2. **Search by keyword**
+   - As a user, I want to search by keyword so I can quickly find specific skills.
+3. **Accessible UI hints**
+   - As a user, I want accessible feedback and tooltips so the UI is easy to understand.
+
+### Won’t Have (for now)
+
+1. **Real-time chat**
+   - As a user, I want live chat so I can negotiate exchanges in real time.
+2. **Payment handling**
+   - As a user, I want to pay for premium features so I can unlock extra services.
+3. **Ratings and reviews**
+   - As a user, I want to rate exchanges so I can build trust in the community.
+
 ## Project Structure
 
 - `accounts/` user auth and profiles
