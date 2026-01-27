@@ -78,7 +78,7 @@
              {% if user.is_authenticated %}
                <a class="btn btn-success btn-sm" href="{% url 'exchange_request' skill.pk %}">Register Interest</a>
              {% else %}
-               <a class="btn btn-success btn-sm" href="{% url 'register' %}">Register to Request</a>
+               <a class="btn btn-success btn-sm" href="{% url 'accounts:register' %}">Register to Request</a>
              {% endif %}
           </div>
         </div>
