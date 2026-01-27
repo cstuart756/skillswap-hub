@@ -1,121 +1,92 @@
 # exchanges/views.py
-from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden, Http404
+from django.db import IntegrityError
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
-from .models import Skill, ExchangeRequest  # adjust if your model names differ
-
-User = get_user_model()
-
-def skill_list(request):
-    skills = Skill.objects.select_related("owner", "category").all()
-    return render(request, "exchanges/skill_list.html", {"skills": skills})
-
-
-def skill_detail(request, pk):
-    skill = get_object_or_404(Skill, pk=pk)
-    return render(request, "exchanges/skill_detail.html", {"skill": skill})
-
-
-@login_required
-def skill_create(request):
-    from skills.forms import SkillForm  # Import here to avoid circular import
-    if request.method == "POST":
-        form = SkillForm(request.POST)
-        if form.is_valid():
-            skill = form.save(commit=False)
-            skill.owner = request.user
-            skill.save()
-            return redirect("skill_detail", pk=skill.pk)
-    else:
-        form = SkillForm()
-    return render(request, "skills/skill_form.html", {"form": form})
-
-
-def login_view(request):
-    if request.method == "POST":
-        identifier = (request.POST.get("username") or "").strip()
-        password = request.POST.get("password") or ""
-
-        user_obj = User.objects.filter(email__iexact=identifier).first()
-        username = user_obj.username if user_obj else identifier
-
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("exchange_dashboard")
-
-        return render(request, "exchanges/login.html", {"error": "Invalid credentials"}, status=200)
-
-    return render(request, "exchanges/login.html")
-
+from skills.models import Skill
+from .models import ExchangeRequest
 
 @login_required
 def dashboard(request):
-    # Keep it simple; tests just need an authenticated page that loads.
-    return render(request, "exchanges/dashboard.html")
+    received = (
+        ExchangeRequest.objects.select_related("skill", "skill__owner", "requester")
+        .filter(skill__owner=request.user)
+        .order_by("-created_at")
+    )
+    sent = (
+        ExchangeRequest.objects.select_related("skill", "skill__owner", "requester")
+        .filter(requester=request.user)
+        .order_by("-created_at")
+    )
+    return render(request, "exchanges/dashboard.html", {"received": received, "sent": sent})
 
-
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
-from django.shortcuts import get_object_or_404, redirect
-
-from .models import Skill, ExchangeRequest
-
+@require_POST
 @login_required
-def exchange_request_create(request, skill_id):
+def request_create(request, skill_id: int):
     skill = get_object_or_404(Skill, pk=skill_id)
 
-    # Common permission rule: cannot request your own skill
-    if getattr(skill, "owner_id", None) == request.user.id:
-        return HttpResponseForbidden("You cannot request your own skill.")
+    if skill.owner_id == request.user.id:
+        messages.error(request, "You cannot request an exchange on your own skill listing.")
+        return redirect(skill.get_absolute_url())
 
-    if request.method != "POST":
-        # Tests are using POST; this keeps behavior strict and simple
-        return HttpResponseForbidden("POST required.")
-
-    # Only set fields that actually exist on the model
-    model_field_names = {f.name for f in ExchangeRequest._meta.get_fields()}
-
-    create_kwargs = {}
-
-    if "skill" in model_field_names:
-        create_kwargs["skill"] = skill
-    elif "skill_id" in model_field_names:
-        create_kwargs["skill_id"] = skill.id
-
-    if "requester" in model_field_names:
-        create_kwargs["requester"] = request.user
-    elif "requester_id" in model_field_names:
-        create_kwargs["requester_id"] = request.user.id
-    elif "user" in model_field_names:
-        create_kwargs["user"] = request.user
-    elif "user_id" in model_field_names:
-        create_kwargs["user_id"] = request.user.id
-
-    if "status" in model_field_names:
-        create_kwargs["status"] = "pending"
-
-    ExchangeRequest.objects.create(**create_kwargs)
-    return redirect("skill_detail", skill.id)
-
-
-    return render(request, "exchanges/exchange_request_form.html", {"skill": skill})
-
-
-@login_required
-def exchange_request_accept(request, request_id):
     try:
-        ex = ExchangeRequest.objects.get(id=request_id)
-    except ExchangeRequest.DoesNotExist:
-        raise Http404
+        ExchangeRequest.objects.create(skill=skill, requester=request.user)
+    except IntegrityError:
+        messages.info(request, "You already have a pending request for this skill.")
+    else:
+        messages.success(request, "Exchange request sent.")
+    return redirect("exchange_dashboard")
 
-    if ex.skill.owner != request.user:
-        raise Http404
+@require_POST
+@login_required
+def request_accept(request, request_id: int):
+    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    if ex.skill.owner_id != request.user.id:
+        messages.error(request, "Only the skill owner may accept this request.")
+        raise Http404("Not found")
+
+    if ex.status != ExchangeRequest.Status.PENDING:
+        messages.info(request, "Only pending requests can be accepted.")
+        return redirect("exchange_dashboard")
 
     ex.status = ExchangeRequest.Status.ACCEPTED
-    ex.save()
+    ex.save(update_fields=["status"])
+    messages.success(request, "Request accepted.")
+    return redirect("exchange_dashboard")
 
+@require_POST
+@login_required
+def request_reject(request, request_id: int):
+    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    if ex.skill.owner_id != request.user.id:
+        messages.error(request, "Only the skill owner may reject this request.")
+        raise Http404("Not found")
+
+    if ex.status != ExchangeRequest.Status.PENDING:
+        messages.info(request, "Only pending requests can be rejected.")
+        return redirect("exchange_dashboard")
+
+    ex.status = ExchangeRequest.Status.REJECTED
+    ex.save(update_fields=["status"])
+    messages.success(request, "Request rejected.")
+    return redirect("exchange_dashboard")
+
+@require_POST
+@login_required
+def request_cancel(request, request_id: int):
+    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    if ex.requester_id != request.user.id:
+        messages.error(request, "Only the requester may cancel this request.")
+        raise Http404("Not found")
+
+    if ex.status != ExchangeRequest.Status.PENDING:
+        messages.info(request, "Only pending requests can be cancelled.")
+        return redirect("exchange_dashboard")
+
+    ex.status = ExchangeRequest.Status.CANCELLED
+    ex.save(update_fields=["status"])
+    messages.success(request, "Request cancelled.")
     return redirect("exchange_dashboard")
