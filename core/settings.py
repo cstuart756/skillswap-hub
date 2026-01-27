@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     ".herokuapp.com",   # leading dot = allow all subdomains
+    "skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
 ]
 
 
