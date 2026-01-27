@@ -27,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = []
 trusted = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "")
 if trusted:
     CSRF_TRUSTED_ORIGINS = [o.strip() for o in trusted.split(",") if o.strip()]
+ALLOWED_HOSTS.append("skillswap-hub-cstuart756.herokuapp.com")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -105,9 +106,12 @@ TIME_ZONE = "Europe/London"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    DATABASES = { 
+        "default": dj_database_url.config(
+            default=os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3"),
+            conn_max_age=600,
+            ssl_require=False,
+        )
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
