@@ -115,3 +115,5 @@ SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 SECURE_SSL_REDIRECT = (not DEBUG) and (
     os.getenv("DJANGO_SECURE_SSL_REDIRECT", "True").lower() == "true")
+
+STATIC_URL = "static/"
