@@ -61,6 +61,60 @@ Run the test suite:
 - Use Django’s built-in authentication and CSRF protection.
 - Ensure database and credentials are not stored in the repository.
 
+## Database Schema (ERD)
+
+```mermaid
+erDiagram
+    User ||--o{ Skill : owns
+    User ||--o{ ExchangeRequest : creates
+    Category ||--o{ Skill : categorizes
+    Skill ||--o{ ExchangeRequest : receives
+    
+    User {
+        int id PK
+        string username
+        string email
+        string password
+        datetime date_joined
+    }
+    
+    Category {
+        int id PK
+        string name
+        string slug
+    }
+    
+    Skill {
+        int id PK
+        int owner_id FK
+        int category_id FK
+        string title
+        text description
+        datetime created_at
+    }
+    
+    ExchangeRequest {
+        int id PK
+        int skill_id FK
+        int requester_id FK
+        string status
+        datetime created_at
+    }
+```
+
+The database consists of four main models:
+
+- **User** (Django's built-in auth model): Manages user authentication and profiles
+- **Category**: Organizes skills into categories with URL-friendly slugs
+- **Skill**: Core entity representing skills users can offer, owned by users and optionally categorized
+- **ExchangeRequest**: Tracks requests between users for skill exchanges with status (pending, accepted, rejected, cancelled)
+
+Key relationships:
+- Users can own multiple skills and create multiple exchange requests
+- Skills belong to one user and optionally one category
+- Exchange requests link a requester (User) to a specific skill
+- Categories can contain multiple skills
+
 ## Project Structure
 
 - `accounts/` user auth and profiles
