@@ -74,6 +74,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 db_url = os.getenv("DATABASE_URL", "")
 if db_url:
+    DATABASES = {
+        "default": dj_database_url.config(default=db_url, conn_max_age=600, ssl_require=not DEBUG)
+    }
 else:
     DATABASES = {
         "default": {
