@@ -25,13 +25,11 @@ DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 # HOSTS / SECURITY
 # =========================
 # Important: keep ONE ALLOWED_HOSTS definition (no duplicates).
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    ".herokuapp.com",  # allow any Heroku subdomain for this app
-    "skillswap-hub-cstuart756.herokuapp.com",
-    "skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
-]
+ALLOWED_HOSTS = [h.strip() for h in os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost,.herokuapp.com,skillswap-hub-cstuart756.herokuapp.com,skillswap-hub-cstuart756-df93470f789d.herokuapp.com"
+).split(",") if h.strip()]
+
 
 # CSRF trusted origins (must include scheme)
 CSRF_TRUSTED_ORIGINS = []
