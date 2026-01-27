@@ -23,9 +23,13 @@ def dashboard(request):
     )
     return render(request, "exchanges/dashboard.html", {"received": received, "sent": sent})
 
-@require_POST
 @login_required
 def request_create(request, skill_id: int):
+    if request.method != "POST":
+        skill = get_object_or_404(Skill, pk=skill_id)
+        messages.info(request, "Please use the button to request an exchange.")
+        return redirect(skill.get_absolute_url())
+
     skill = get_object_or_404(Skill, pk=skill_id)
 
     if skill.owner_id == request.user.id:

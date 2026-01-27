@@ -73,7 +73,10 @@
           <div class="card-footer bg-transparent border-top-0">
             <a class="btn btn-outline-primary btn-sm" href="{{ skill.get_absolute_url }}">View</a>
              {% if user.is_authenticated %}
-               <a class="btn btn-success btn-sm" href="{% url 'exchange_request_create' skill.pk %}">Register Interest</a>
+               <form method="post" action="{% url 'exchange_request_create' skill.pk %}" class="d-inline">
+                 {% csrf_token %}
+                 <button type="submit" class="btn btn-success btn-sm">Register Interest</button>
+               </form>
              {% else %}
                <a class="btn btn-success btn-sm" href="{% url 'accounts:register' %}">Register to Request</a>
              {% endif %}
