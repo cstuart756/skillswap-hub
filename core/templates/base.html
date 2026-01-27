@@ -131,8 +131,12 @@
     {% include "includes/_messages.html" %}
   </div>
 
-  <main id="main" class="container mb-5">
+
+  <main id="main" class="container mb-5 position-relative">
     {% block content %}{% endblock %}
+    <img src="{% static 'skillswap-watermark.svg' %}"
+         alt="SkillSwap watermark"
+         style="position: fixed; bottom: 2rem; right: 2rem; width: 320px; max-width: 60vw; opacity: 0.13; pointer-events: none; z-index: 100; user-select: none;" />
   </main>
 
   {% include "includes/_footer.html" %}
