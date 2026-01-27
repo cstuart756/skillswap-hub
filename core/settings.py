@@ -27,8 +27,12 @@ CSRF_TRUSTED_ORIGINS = []
 trusted = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "")
 if trusted:
     CSRF_TRUSTED_ORIGINS = [o.strip() for o in trusted.split(",") if o.strip()]
-ALLOWED_HOSTS.append("skillswap-hub-cstuart756.herokuapp.com")
-ALLOWED_HOSTS.append("skillswap-hub-cstuart756-df93470f789d.herokuapp.com")
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    ".herokuapp.com",   # leading dot = allow all subdomains
+]
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
