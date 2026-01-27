@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}Dashboard | SkillSwap Hub{% endblock
-%} {% block content %}
+{% extends "base.html" %}
+{% block title %}Dashboard | SkillSwap Hub{% endblock %}
+{% block content %}
 <h1 class="h3 mb-3">Exchange Dashboard</h1>
 
 <div class="row g-4">
@@ -18,15 +19,12 @@
             <div class="fw-semibold">
               <a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a>
             </div>
-            <div class="text-muted small">
-              From {{ r.requester.username }} · {{ r.created_at|date:"j M Y,
-              H:i" }}
-            </div>
+            <div class="text-muted small">From {{ r.requester.username }} · {{ r.created_at|date:"j M Y, H:i" }}</div>
           </div>
           <div class="text-end">
-            {% with "receivedHelp"|add:r.id|stringformat:"s" as badge_id %} {%
-            include "includes/_status_badge.html" with status=r.status
-            badge_id=badge_id %} {% endwith %}
+            {% with "receivedHelp"|add:r.id|stringformat:"s" as badge_id %}
+              {% include "includes/_status_badge.html" with status=r.status badge_id=badge_id %}
+            {% endwith %}
           </div>
         </div>
 
@@ -67,15 +65,12 @@
             <div class="fw-semibold">
               <a href="{{ r.skill.get_absolute_url }}">{{ r.skill.title }}</a>
             </div>
-            <div class="text-muted small">
-              To {{ r.skill.owner.username }} · {{ r.created_at|date:"j M Y,
-              H:i" }}
-            </div>
+            <div class="text-muted small">To {{ r.skill.owner.username }} · {{ r.created_at|date:"j M Y, H:i" }}</div>
           </div>
           <div class="text-end">
-            {% with "sentHelp"|add:r.id|stringformat:"s" as badge_id %} {%
-            include "includes/_status_badge.html" with status=r.status
-            badge_id=badge_id %} {% endwith %}
+            {% with "sentHelp"|add:r.id|stringformat:"s" as badge_id %}
+              {% include "includes/_status_badge.html" with status=r.status badge_id=badge_id %}
+            {% endwith %}
           </div>
         </div>
 
