@@ -1,0 +1,12 @@
+{% comment %}
+Shows the current user's exchange request status for a skill, if any.
+Expects: skill, user, and request_status in context.
+{% endcomment %}
+{% if request_status %}
+  {% include "includes/_status_badge.html" with status=request_status %}
+  {% if request_status == "pending" %}
+    <form method="post" action="{% url 'exchange_request_cancel' request_id %}" class="d-inline">{% csrf_token %}
+      <button class="btn btn-outline-secondary btn-sm ms-2" type="submit">Cancel</button>
+    </form>
+  {% endif %}
+{% endif %}
