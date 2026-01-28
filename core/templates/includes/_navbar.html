@@ -15,8 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'exchange_dashboard' %}">Dashboard</a></li>
                 {% endif %}
             </ul>
-
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto gap-2 align-items-center">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <span class="navbar-text me-2">{{ user.get_username }}</span>
@@ -30,6 +29,9 @@
                 {% else %}
                 <li class="nav-item">
                     <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success btn-sm" href="{% url 'accounts:register' %}">Register</a>
                 </li>
                 {% endif %}
             </ul>

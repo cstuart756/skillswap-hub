@@ -8,7 +8,7 @@
 
 
     {% load static %}
-    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
     <!-- Google Fonts: Inter and Montserrat for vivid, modern look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 -->
@@ -132,11 +132,15 @@
   </div>
 
 
-  <main id="main" class="container mb-5 position-relative">
-    {% block content %}{% endblock %}
-    <img src="{% static 'skillswap-watermark.svg' %}"
-         alt="SkillSwap watermark"
-         style="position: fixed; bottom: 2rem; right: 2rem; width: 320px; max-width: 60vw; opacity: 0.13; pointer-events: none; z-index: 100; user-select: none;" />
+  <main id="main" class="container mb-5 position-relative" style="min-height: 70vh;">
+    <div style="position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; user-select: none; display: flex; align-items: center; justify-content: center;">
+      <img src="{% static 'core/skillswap-watermark.svg' %}"
+           alt="SkillSwap watermark"
+           style="width: 50vw; max-width: 600px; min-width: 200px; opacity: 0.10;" />
+    </div>
+    <div style="position: relative; z-index: 1;">
+      {% block content %}{% endblock %}
+    </div>
   </main>
 
   {% include "includes/_footer.html" %}
