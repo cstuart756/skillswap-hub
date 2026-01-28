@@ -11,14 +11,6 @@
       · {{ skill.created_at|date:"j M Y, H:i" }}
     </p>
   </div>
-
-  <div class="d-flex gap-2">
-    <a class="btn btn-outline-secondary" href="{% url 'skill_list' %}">Back</a>
-    {% if user.is_authenticated and user.id == skill.owner_id %}
-      <a class="btn btn-primary" href="{% url 'skill_update' skill.pk %}">Edit</a>
-      <a class="btn btn-outline-danger" href="{% url 'skill_delete' skill.pk %}">Delete</a>
-    {% endif %}
-  </div>
 </div>
 
 <div class="card mt-3">

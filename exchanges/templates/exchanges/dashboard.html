@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Dashboard | SkillSwap Hub{% endblock %}
 {% block content %}
-<h1 class="h3 mb-3">Exchange Dashboard</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <h1 class="h3 mb-0">Exchange Dashboard</h1>
+  <a href="{% url 'exchange_details' %}" class="btn btn-outline-primary">Exchange Personal Details</a>
+</div>
 
 <div class="row g-4">
   <div class="col-12 col-lg-6">
