@@ -31,10 +31,20 @@
     {% if user.id == skill.owner_id %}
       <div class="alert alert-info" role="alert">You own this skill listing.</div>
     {% else %}
-      <form method="post" action="{% url 'exchange_request_create' skill.pk %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-success">Request Exchange</button>
-      </form>
+      {% if show_owner_contact and owner_contact %}
+        <div class="alert alert-success" role="alert">
+          <strong>Contact Details for {{ skill.owner.username }}:</strong><br>
+          Name: {{ owner_contact.full_name }}<br>
+          Email: <a href="mailto:{{ owner_contact.email }}">{{ owner_contact.email }}</a><br>
+          {% if owner_contact.phone %}Phone: {{ owner_contact.phone }}<br>{% endif %}
+          {% if owner_contact.notes %}Notes: {{ owner_contact.notes }}<br>{% endif %}
+        </div>
+      {% else %}
+        <form method="post" action="{% url 'exchange_request_create' skill.pk %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Request Exchange</button>
+        </form>
+      {% endif %}
     {% endif %}
   {% endif %}
 </div>
