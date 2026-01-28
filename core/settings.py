@@ -27,7 +27,9 @@ ALLOWED_HOSTS = [
     h.strip()
     for h in os.getenv(
         "ALLOWED_HOSTS",
-        "127.0.0.1,localhost,.herokuapp.com,skillswap-hub-cstuart756.herokuapp.com,skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
+        "127.0.0.1,localhost,.herokuapp.com,"
+        "skillswap-hub-cstuart756.herokuapp.com,"
+        "skillswap-hub-cstuart756-df93470f789d.herokuapp.com",
     ).split(",")
     if h.strip()
 ]
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "accounts",
     "skills",
     "exchanges",
@@ -118,10 +121,22 @@ else:
 # AUTH / LOGIN
 # =========================
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation."
+        "UserAttributeSimilarityValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation."
+        "MinimumLengthValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation."
+        "CommonPasswordValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation."
+        "NumericPasswordValidator"
+    },
 ]
 
 AUTHENTICATION_BACKENDS = [
