@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load skill_extras %}
 {% block title %}Browse Skills | SkillSwap Hub{% endblock %}
 
 {% block content %}
@@ -72,11 +73,28 @@
           </div>
           <div class="card-footer bg-transparent border-top-0">
             <a class="btn btn-outline-primary btn-sm" href="{{ skill.get_absolute_url }}">View</a>
-             {% if user.is_authenticated %}
-               <a class="btn btn-success btn-sm" href="{% url 'exchange_request_create' skill.pk %}">Register Interest</a>
-             {% else %}
-               <a class="btn btn-success btn-sm" href="{% url 'accounts:register' %}">Register to Request</a>
-             {% endif %}
+            {% if user.is_authenticated %}
+              {% if user.id == skill.owner_id or user.is_superuser or user.is_staff %}
+                <a class="btn btn-primary btn-sm" href="{% url 'skill_update' skill.pk %}">Edit</a>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'skill_delete' skill.pk %}">Delete</a>
+                {% if user.is_superuser or user.is_staff and user.id != skill.owner_id %}
+                  <span class="badge bg-danger ms-2">Admin</span>
+                {% endif %}
+              {% else %}
+                {# Show exchange request status if user has requested #}
+                {% with user_request=skill.exchange_requests.all|get_user_request:user %}
+                  {% if user_request %}
+                    {% include "exchanges/skill_list_exchange_status.html" with request_status=user_request.status request_id=user_request.id %}
+                  {% else %}
+                    <form method="post" action="{% url 'exchange_request_create' skill.pk %}" class="d-inline">{% csrf_token %}
+                      <button class="btn btn-success btn-sm" type="submit">Register Interest</button>
+                    </form>
+                  {% endif %}
+                {% endwith %}
+              {% endif %}
+            {% else %}
+              <a class="btn btn-success btn-sm" href="{% url 'accounts:register' %}">Register to Request</a>
+            {% endif %}
           </div>
         </div>
       </div>

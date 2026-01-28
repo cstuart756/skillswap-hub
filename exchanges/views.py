@@ -9,43 +9,56 @@ from django.views.decorators.http import require_POST
 from skills.models import Skill
 from .models import ExchangeRequest
 
+
 @login_required
 def dashboard(request):
     received = (
-        ExchangeRequest.objects.select_related("skill", "skill__owner", "requester")
+        ExchangeRequest.objects.select_related(
+            "skill", "skill__owner", "requester")
         .filter(skill__owner=request.user)
         .order_by("-created_at")
     )
     sent = (
-        ExchangeRequest.objects.select_related("skill", "skill__owner", "requester")
+        ExchangeRequest.objects.select_related(
+            "skill", "skill__owner", "requester")
         .filter(requester=request.user)
         .order_by("-created_at")
     )
     return render(request, "exchanges/dashboard.html", {"received": received, "sent": sent})
 
-@require_POST
+
 @login_required
 def request_create(request, skill_id: int):
+    if request.method != "POST":
+        skill = get_object_or_404(Skill, pk=skill_id)
+        messages.info(request, "Please use the button to request an exchange.")
+        return redirect(skill.get_absolute_url())
+
     skill = get_object_or_404(Skill, pk=skill_id)
 
     if skill.owner_id == request.user.id:
-        messages.error(request, "You cannot request an exchange on your own skill listing.")
+        messages.error(
+            request, "You cannot request an exchange on your own skill listing.")
         return redirect(skill.get_absolute_url())
 
     try:
         ExchangeRequest.objects.create(skill=skill, requester=request.user)
     except IntegrityError:
-        messages.info(request, "You already have a pending request for this skill.")
+        messages.info(
+            request, "You already have a pending request for this skill.")
     else:
         messages.success(request, "Exchange request sent.")
     return redirect("exchange_dashboard")
 
+
 @require_POST
 @login_required
 def request_accept(request, request_id: int):
-    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    ex = get_object_or_404(
+        ExchangeRequest.objects.select_related("skill"), pk=request_id)
     if ex.skill.owner_id != request.user.id:
-        messages.error(request, "Only the skill owner may accept this request.")
+        messages.error(
+            request, "Only the skill owner may accept this request.")
         raise Http404("Not found")
 
     if ex.status != ExchangeRequest.Status.PENDING:
@@ -57,12 +70,15 @@ def request_accept(request, request_id: int):
     messages.success(request, "Request accepted.")
     return redirect("exchange_dashboard")
 
+
 @require_POST
 @login_required
 def request_reject(request, request_id: int):
-    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    ex = get_object_or_404(
+        ExchangeRequest.objects.select_related("skill"), pk=request_id)
     if ex.skill.owner_id != request.user.id:
-        messages.error(request, "Only the skill owner may reject this request.")
+        messages.error(
+            request, "Only the skill owner may reject this request.")
         raise Http404("Not found")
 
     if ex.status != ExchangeRequest.Status.PENDING:
@@ -74,10 +90,12 @@ def request_reject(request, request_id: int):
     messages.success(request, "Request rejected.")
     return redirect("exchange_dashboard")
 
+
 @require_POST
 @login_required
 def request_cancel(request, request_id: int):
-    ex = get_object_or_404(ExchangeRequest.objects.select_related("skill"), pk=request_id)
+    ex = get_object_or_404(
+        ExchangeRequest.objects.select_related("skill"), pk=request_id)
     if ex.requester_id != request.user.id:
         messages.error(request, "Only the requester may cancel this request.")
         raise Http404("Not found")
