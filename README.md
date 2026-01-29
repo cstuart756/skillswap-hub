@@ -18,6 +18,66 @@ SkillSwap Hub is a Django-based full-stack web application for listing skills an
 - Role-based access controls for protected actions
 - Responsive, accessible UI with clear validation and feedback
 
+## Final Product
+
+### Desktop
+
+![Final product desktop view](docs/final-product-desktop.png)
+
+### Mobile
+
+![Final product mobile view](docs/final-product-mobile.png)
+
+### Login
+
+![Final product login](docs/final-product-login.png)
+
+### Register
+
+![Final product register](docs/final-product-register.png)
+
+### Offer Skill
+
+![Final product offer skill](docs/final-product-offer-skill.png)
+
+### Skill Details
+
+![Final product skill details](docs/final-product-skill-details.png)
+
+### Exchange Dashboard
+
+![Final product exchange dashboard](docs/final-product-exchange-dashboard.png)
+
+## Wireframes
+
+### Desktop
+
+![Wireframe desktop](docs/wireframe-desktop.svg)
+
+### Mobile
+
+![Wireframe mobile](docs/wireframe-mobile.svg)
+
+### Login
+
+![Wireframe login](docs/wireframe-login.svg)
+
+### Register
+
+![Wireframe register](docs/wireframe-register.svg)
+
+### Offer Skill
+
+![Wireframe offer skill](docs/wireframe-offer-skill.svg)
+
+### Skill Details
+
+![Wireframe skill details](docs/wireframe-skill-details.svg)
+
+### Exchange Dashboard
+
+![Wireframe exchange dashboard](docs/wireframe-exchange-dashboard.svg)
+
 ## Tech Stack
 
 - Django
