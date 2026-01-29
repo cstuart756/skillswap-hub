@@ -29,11 +29,12 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'skill_list' %}">Browse Skills</a></li>
-                {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'skill_create' %}">Offer a Skill</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'exchange_dashboard' %}">Dashboard</a></li>
-                {% endif %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'skill_list' %}">Browse Skills</a></li>
+              {% if user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'skill_create' %}">Offer a Skill</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'exchange_dashboard' %}">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'exchange_details' %}">Exchange Details</a></li>
+              {% endif %}
             </ul>
             <ul class="navbar-nav ms-auto gap-2 align-items-center">
                 {% if user.is_authenticated %}

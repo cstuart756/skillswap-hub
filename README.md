@@ -2,6 +2,9 @@
 
 ![SkillSwap Hub logo](static/brand/skillswap-logo.svg)
 
+- [Project board](https://github.com/users/cstuart756/projects/10/views/1)
+- [Live site](https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com/)
+
 ## Overview
 
 SkillSwap Hub is a Django-based full-stack web application for listing skills and creating exchange requests between users. It provides authentication, CRUD features, and a clean, accessible UI.
@@ -177,8 +180,45 @@ Key relationships:
 
 ## AI Tooling (Reflection)
 
-This project may use AI assistance to:
+AI-assisted tooling was used as a supportive development aid during the planning and implementation of this project. All final code decisions, integration, and testing were performed by the developer.
 
-- Draft documentation and test outlines
-- Summarize accessibility checks
-- Suggest refactoring or linting improvements
+AI was used to:
+
+- 📐 Planning & Architecture
+  - Assist in breaking down user stories into technical tasks aligned with Agile methodology.
+  - Suggest database relationships and model responsibilities during early ERD design.
+  - Help validate Django app separation (accounts, skills, exchanges) against best-practice conventions.
+- 🧠 Problem Solving & Debugging
+  - Provide explanations of Django error messages and tracebacks to support debugging.
+  - Suggest alternative approaches to view logic and form validation where initial implementations failed.
+  - Help reason about permission handling and request lifecycle states (pending, accepted, rejected, cancelled).
+- 🧪 Testing Support
+  - Generate initial test case outlines for:
+    - Exchange request workflows
+    - Model validation logic
+    - View-level access control
+  - Assist in refining pytest structure and fixture usage.
+  - Support interpretation of failing tests and refactoring towards passing outcomes.
+- ♿ Accessibility & UX
+  - Provide guidance on:
+    - Semantic HTML structure
+    - Form labelling and error feedback
+    - Keyboard navigation expectations
+  - Assist with contrast and layout recommendations for readable UI.
+- 📄 Documentation
+  - Drafted and refined:
+    - README structure and technical descriptions
+    - User stories (MoSCoW prioritisation)
+    - Feature summaries and setup instructions
+  - Assisted in writing clear commit messages and pull request descriptions.
+
+### Responsible AI Use
+
+AI tools were used strictly as a development assistant, not as an autonomous code generator. All outputs were:
+
+- Reviewed manually
+- Adapted to project requirements
+- Tested locally
+- Integrated selectively
+
+This approach reflects real-world software engineering workflows, where AI can be used as a productivity aid, not a replacement for developer understanding or accountability.
