@@ -1,3 +1,9 @@
+
+![SkillSwap Hub logo](static/brand/skillswap-logo.svg)
+
+- [Project board](https://github.com/users/cstuart756/projects/10/views/1)
+- [Live site](https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com/)
+
 # UI Wireframes
 
 Below are the main UI wireframes for the SkillSwap Hub project. These illustrate the core user flows and admin features.
@@ -25,12 +31,8 @@ Below are the main UI wireframes for the SkillSwap Hub project. These illustrate
 
 #### GitHub Project Board Example
 ![GitHub Project Board](docs/wireframes/github-project-board.png)
+
 # SkillSwap Hub
-
-![SkillSwap Hub logo](static/brand/skillswap-logo.svg)
-
-- [Project board](https://github.com/users/cstuart756/projects/10/views/1)
-- [Live site](https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com/)
 
 ## Overview
 
