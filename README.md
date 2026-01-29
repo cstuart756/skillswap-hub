@@ -2,6 +2,9 @@
 
 ![SkillSwap Hub logo](static/brand/skillswap-logo.svg)
 
+- [Project board](https://github.com/users/cstuart756/projects/10/views/1)
+- [Live site](https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com/)
+
 ## Overview
 
 SkillSwap Hub is a Django-based full-stack web application for listing skills and creating exchange requests between users. It provides authentication, CRUD features, and a clean, accessible UI.
