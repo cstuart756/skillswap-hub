@@ -8,14 +8,29 @@
 
 Below are the main UI wireframes for the SkillSwap Hub project. These illustrate the core user flows and admin features.
 
-### Desktop Views
 
+### Desktop Views
 
 #### Skill Listings, User Dashboard, Create/Edit Skill
 ![Skill Listings, User Dashboard, Create/Edit Skill](static/brand/desktopwireframe.png)
 
 #### Skill Listings, Admin Moderation, Create/Edit Skill
-![Skill Listings, Admin Moderation, Create/Edit Skill](static/brand/dashboard.PNG)
+![Skill Listings, Admin Moderation, Create/Edit Skill](static/brand/dashboard.png)
+
+#### Desktop View Example
+![Desktop View](static/brand/desktop%20view.png)
+
+#### Browse Skills
+![Browse Skills](static/brand/browseskills.png)
+
+#### Exchange Details
+![Exchange Details](static/brand/exchangedetails.png)
+
+#### Exchange Submitted
+![Exchange Submitted](static/brand/exchangesubmitted.png)
+
+#### Home Page
+![Home Page](static/brand/skillswaphomepage.png)
 
 ### Mobile Views
 
@@ -26,12 +41,39 @@ Below are the main UI wireframes for the SkillSwap Hub project. These illustrate
 ![Mobile Home, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe0.png)
 
 #### Skill Listings, Skill Detail, User Dashboard, Create/Edit Skill
-![Mobile Skill Listings, Detail, Dashboard, Create/Edit](static/brand/mobileview.PNG)
+![Mobile Skill Listings, Detail, Dashboard, Create/Edit](static/brand/mobileview.png)
+
+#### Tablet Wireframe
+![Tablet Wireframe](static/brand/tabletwireframe.png)
+
+#### Tablet Wireframe 2
+![Tablet Wireframe 2](static/brand/tabletwireframe0.png)
+
+#### Mobile Wireframe
+![Mobile Wireframe](static/brand/mobilewireframe.png)
+
+#### Mobile Wireframe 2
+![Mobile Wireframe 2](static/brand/mobilewireframe0.png)
+
+#### Offer a Skill
+![Offer a Skill](static/brand/offer%20a%20skill.png)
+
+#### Login
+![Login](static/brand/skillswaplogin.png)
+
+#### Login 2
+![Login 2](static/brand/skillswaplogin0.png)
+
+#### Lighthouse Desktop
+![Lighthouse Desktop](static/brand/skillswaplighthousedesktop.png)
+
+#### Lighthouse Mobile
+![Lighthouse Mobile](static/brand/skillswaplighthousemobile.png)
 
 ### Project Board
 
 #### GitHub Project Board Example
-![GitHub Project Board](static/brand/skillswapprojectboard.PNG)
+![GitHub Project Board](static/brand/skillswapprojectboard.png)
 
 # SkillSwap Hub
 
