@@ -5,8 +5,11 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+
 from .forms import SkillForm
 from .models import Skill, Category
+from exchanges.models import ExchangeRequest
+from core.models import ExchangeDetail
 
 
 class SkillListView(ListView):
@@ -49,10 +52,28 @@ class SkillListView(ListView):
         return ctx
 
 
+
 class SkillDetailView(DetailView):
     model = Skill
     template_name = "skills/skill_detail.html"
     context_object_name = "skill"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        skill = self.object
+        show_owner_contact = False
+        owner_contact = None
+        if user.is_authenticated and user != skill.owner:
+            # Check if the user has an accepted exchange request for this skill
+            accepted = ExchangeRequest.objects.filter(skill=skill, requester=user, status=ExchangeRequest.Status.ACCEPTED).exists()
+            if accepted:
+                show_owner_contact = True
+                # Get the latest ExchangeDetail for the owner, if any
+                owner_contact = ExchangeDetail.objects.filter(user=skill.owner).order_by('-created_at').first()
+        context['show_owner_contact'] = show_owner_contact
+        context['owner_contact'] = owner_contact
+        return context
 
     def get_queryset(self):
         return Skill.objects.select_related("owner", "category")
