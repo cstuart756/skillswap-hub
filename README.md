@@ -10,27 +10,28 @@ Below are the main UI wireframes for the SkillSwap Hub project. These illustrate
 
 ### Desktop Views
 
+
 #### Skill Listings, User Dashboard, Create/Edit Skill
-![Skill Listings, User Dashboard, Create/Edit Skill](docs/wireframes/desktop-skill-listings-dashboard-create-edit.png)
+![Skill Listings, User Dashboard, Create/Edit Skill](static/brand/desktopwireframe.png)
 
 #### Skill Listings, Admin Moderation, Create/Edit Skill
-![Skill Listings, Admin Moderation, Create/Edit Skill](docs/wireframes/desktop-skill-listings-admin-moderation-create-edit.png)
+![Skill Listings, Admin Moderation, Create/Edit Skill](static/brand/dashboard.PNG)
 
 ### Mobile Views
 
 #### Skill Listings, Skill Detail, Login/Register, User Dashboard, Create/Edit Skill
-![Mobile Skill Listings, Detail, Login, Dashboard, Create/Edit](docs/wireframes/mobile-skill-listings-detail-login-dashboard-create-edit.png)
+![Mobile Skill Listings, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe.png)
 
 #### Home/Skill Listings, Skill Detail, Login/Register, Dashboard, Create/Edit Skill
-![Mobile Home, Detail, Login, Dashboard, Create/Edit](docs/wireframes/mobile-home-detail-login-dashboard-create-edit.png)
+![Mobile Home, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe0.png)
 
 #### Skill Listings, Skill Detail, User Dashboard, Create/Edit Skill
-![Mobile Skill Listings, Detail, Dashboard, Create/Edit](docs/wireframes/mobile-skill-listings-detail-dashboard-create-edit.png)
+![Mobile Skill Listings, Detail, Dashboard, Create/Edit](static/brand/mobileview.PNG)
 
 ### Project Board
 
 #### GitHub Project Board Example
-![GitHub Project Board](docs/wireframes/github-project-board.png)
+![GitHub Project Board](static/brand/skillswapprojectboard.PNG)
 
 # SkillSwap Hub
 
