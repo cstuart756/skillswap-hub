@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#f8f8f8" />
+  <rect x="40" y="40" width="1120" height="720" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="80" y="80" width="1040" height="60" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="120" font-family="Arial" font-size="20" fill="#333">Header</text>
+  <rect x="360" y="200" width="480" height="360" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="400" y="260" width="400" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="400" y="320" width="400" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="400" y="380" width="400" height="44" fill="none" stroke="#333" stroke-width="2" />
+  <text x="420" y="290" font-family="Arial" font-size="16" fill="#333">Email</text>
+  <text x="420" y="350" font-family="Arial" font-size="16" fill="#333">Password</text>
+  <text x="420" y="410" font-family="Arial" font-size="16" fill="#333">Sign in button</text>
+  <text x="360" y="590" font-family="Arial" font-size="16" fill="#333">Wireframe - Login</text>
+</svg>
