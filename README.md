@@ -24,6 +24,7 @@
 - [Project Structure](#project-structure)
 - [AI Tooling (Reflection)](#ai-tooling-reflection)
   - [Responsible AI Use](#responsible-ai-use)
+- [Credits](#credits)
 
 ## Overview
 
@@ -224,18 +225,30 @@ Checklist:
 - ✅ Add contact details
 - ✅ Exchange contact details
 - ✅ Logout
+- ✅ PEP8 check (pycodestyle)
 
 <details>
-<summary>Lighthouse Desktop</summary>
+<summary>Accessibility (WAVE) - No accessibility errors</summary>
 
-![Lighthouse Desktop](static/brand/skillswaplighthousedesktop.png)
+![WAVE accessibility report (no errors)](docs/testing-accessibility.png)
+
+</details>
+
+### PageSpeed Insights (latest)
+
+100% accessibility, best practice and SEO
+
+<details>
+<summary>Desktop</summary>
+
+![PageSpeed Insights desktop](docs/testing-pagespeed-desktop.png)
 
 </details>
 
 <details>
-<summary>Lighthouse Mobile</summary>
+<summary>Mobile</summary>
 
-![Lighthouse Mobile](static/brand/skillswaplighthousemobile.png)
+![PageSpeed Insights mobile](docs/testing-pagespeed-mobile.png)
 
 </details>
 
@@ -247,9 +260,32 @@ Checklist:
 
 ## Deployment
 
-- The project includes `Procfile` and `runtime.txt` for platform deployments.
-- Configure production settings for security (e.g., `DEBUG=False`, secure cookies, allowed hosts).
-- Use environment variables for secrets and database configuration.
+### Deploy to Heroku
+
+1. Create a Heroku app:
+   - `heroku create skillswap-hub`
+2. Add the Postgres addon:
+   - `heroku addons:create heroku-postgresql:hobby-dev`
+3. Configure environment variables:
+   - `heroku config:set SECRET_KEY=your-secret-key`
+   - `heroku config:set DEBUG=False`
+   - `heroku config:set ALLOWED_HOSTS=your-app-name.herokuapp.com`
+   - `heroku config:set DJANGO_CSRF_TRUSTED_ORIGINS=https://your-app-name.herokuapp.com`
+4. Push to Heroku:
+   - `git push heroku main`
+5. Apply migrations:
+   - `heroku run python manage.py migrate`
+6. (Optional) Seed sample data:
+   - `heroku run python manage.py seed_sample_data`
+7. Collect static files (if required):
+   - `heroku run python manage.py collectstatic --noinput`
+8. Open the app:
+   - `heroku open`
+
+Notes:
+
+- This project already includes a `Procfile` and `runtime.txt`.
+- For production, keep `DEBUG=False` and use environment variables for secrets.
 
 ## Security
 
@@ -417,3 +453,12 @@ AI tools were used strictly as a development assistant, not as an autonomous cod
 - Integrated selectively
 
 This approach reflects real-world software engineering workflows, where AI can be used as a productivity aid, not a replacement for developer understanding or accountability.
+
+## Credits
+
+- Django framework and documentation
+- Bootstrap UI framework
+- Heroku deployment platform
+- Lighthouse auditing tool
+- WAVE (WebAIM) accessibility evaluation tool
+- AI tooling: GPT models and Claude models as per above section

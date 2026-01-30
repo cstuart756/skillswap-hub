@@ -4,6 +4,7 @@ from django.db.models import Q
 
 UserModel = get_user_model()
 
+
 class EmailOrUsernameModelBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         if username is None or password is None:
@@ -14,7 +15,9 @@ class EmailOrUsernameModelBackend(ModelBackend):
             return None
 
         try:
-            user = UserModel.objects.get(Q(username__iexact=identifier) | Q(email__iexact=identifier))
+            user = UserModel.objects.get(
+                Q(username__iexact=identifier) | Q(email__iexact=identifier)
+            )
         except UserModel.DoesNotExist:
             return None
 

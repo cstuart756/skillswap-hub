@@ -24,7 +24,11 @@ def dashboard(request):
         .filter(requester=request.user)
         .order_by("-created_at")
     )
-    return render(request, "exchanges/dashboard.html", {"received": received, "sent": sent})
+    return render(
+        request,
+        "exchanges/dashboard.html",
+        {"received": received, "sent": sent},
+    )
 
 
 @login_required
@@ -38,14 +42,18 @@ def request_create(request, skill_id: int):
 
     if skill.owner_id == request.user.id:
         messages.error(
-            request, "You cannot request an exchange on your own skill listing.")
+            request,
+            "You cannot request an exchange on your own skill listing.",
+        )
         return redirect(skill.get_absolute_url())
 
     try:
         ExchangeRequest.objects.create(skill=skill, requester=request.user)
     except IntegrityError:
         messages.info(
-            request, "You already have a pending request for this skill.")
+            request,
+            "You already have a pending request for this skill.",
+        )
     else:
         messages.success(request, "Exchange request sent.")
     return redirect("exchange_dashboard")
@@ -55,10 +63,14 @@ def request_create(request, skill_id: int):
 @login_required
 def request_accept(request, request_id: int):
     ex = get_object_or_404(
-        ExchangeRequest.objects.select_related("skill"), pk=request_id)
+        ExchangeRequest.objects.select_related("skill"),
+        pk=request_id,
+    )
     if ex.skill.owner_id != request.user.id:
         messages.error(
-            request, "Only the skill owner may accept this request.")
+            request,
+            "Only the skill owner may accept this request.",
+        )
         raise Http404("Not found")
 
     if ex.status != ExchangeRequest.Status.PENDING:
@@ -75,10 +87,14 @@ def request_accept(request, request_id: int):
 @login_required
 def request_reject(request, request_id: int):
     ex = get_object_or_404(
-        ExchangeRequest.objects.select_related("skill"), pk=request_id)
+        ExchangeRequest.objects.select_related("skill"),
+        pk=request_id,
+    )
     if ex.skill.owner_id != request.user.id:
         messages.error(
-            request, "Only the skill owner may reject this request.")
+            request,
+            "Only the skill owner may reject this request.",
+        )
         raise Http404("Not found")
 
     if ex.status != ExchangeRequest.Status.PENDING:
@@ -95,7 +111,9 @@ def request_reject(request, request_id: int):
 @login_required
 def request_cancel(request, request_id: int):
     ex = get_object_or_404(
-        ExchangeRequest.objects.select_related("skill"), pk=request_id)
+        ExchangeRequest.objects.select_related("skill"),
+        pk=request_id,
+    )
     if ex.requester_id != request.user.id:
         messages.error(request, "Only the requester may cancel this request.")
         raise Http404("Not found")

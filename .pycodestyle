@@ -1,0 +1,9 @@
+[pycodestyle]
+exclude = .venv,*/migrations/*,**/migrations/*,static,staticfiles,docs,db.sqlite3
+max-line-length = 79
+per-file-ignores =
+	*/migrations/*.py:E501
+	**/migrations/*.py:E501
+	core/migrations/*.py:E501
+	exchanges/migrations/*.py:E501
+	skills/migrations/*.py:E501

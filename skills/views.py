@@ -3,8 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import Http404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from .forms import SkillForm
 from .models import Skill, Category
@@ -26,8 +31,11 @@ class SkillListView(ListView):
         sort = (self.request.GET.get("sort") or "new").strip()
 
         if q:
-            qs = qs.filter(Q(title__icontains=q) | Q(
-                description__icontains=q) | Q(owner__username__icontains=q))
+            qs = qs.filter(
+                Q(title__icontains=q)
+                | Q(description__icontains=q)
+                | Q(owner__username__icontains=q)
+            )
 
         if cat:
             if cat.isdigit():
@@ -71,14 +79,18 @@ class SkillDetailView(DetailView):
         if user.is_authenticated and user != skill.owner:
             # Check if the user has an accepted exchange request for this skill
             accepted = ExchangeRequest.objects.filter(
-                skill=skill, requester=user, status=ExchangeRequest.Status.ACCEPTED).exists()
+                skill=skill,
+                requester=user,
+                status=ExchangeRequest.Status.ACCEPTED,
+            ).exists()
             if accepted:
                 show_owner_contact = True
                 # Get the latest ExchangeDetail for the owner, if any
                 owner_contact = ExchangeDetail.objects.filter(
-                    user=skill.owner).order_by('-created_at').first()
-        context['show_owner_contact'] = show_owner_contact
-        context['owner_contact'] = owner_contact
+                    user=skill.owner
+                ).order_by("-created_at").first()
+        context["show_owner_contact"] = show_owner_contact
+        context["owner_contact"] = owner_contact
         return context
 
     def get_queryset(self):
@@ -90,7 +102,9 @@ class OwnerRequiredMixin(LoginRequiredMixin):
         obj = self.get_object()
         if obj.owner_id != request.user.id:
             messages.error(
-                request, "You do not have permission to access that resource.")
+                request,
+                "You do not have permission to access that resource.",
+            )
             raise Http404("Not found")
         return super().dispatch(request, *args, **kwargs)
 

@@ -10,22 +10,66 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('skills', '0001_initial'),
+        ("skills", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ExchangeRequest',
+            name="ExchangeRequest",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected'), ('cancelled', 'Cancelled')], default='pending', max_length=12)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('requester', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exchange_requests', to=settings.AUTH_USER_MODEL)),
-                ('skill', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exchange_requests', to='skills.skill')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending"),
+                            ("accepted", "Accepted"),
+                            ("rejected", "Rejected"),
+                            ("cancelled", "Cancelled"),
+                        ],
+                        default="pending",
+                        max_length=12,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "requester",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="exchange_requests",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "skill",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="exchange_requests",
+                        to="skills.skill",
+                    ),
+                ),
             ],
             options={
-                'constraints': [models.UniqueConstraint(condition=models.Q(('status', 'pending')), fields=('requester', 'skill'), name='uniq_pending_exchange_request_per_requester_skill')],
+                "constraints": [
+                    models.UniqueConstraint(
+                        condition=models.Q(
+                            ("status", "pending")
+                        ),
+                        fields=("requester", "skill"),
+                        name=(
+                            "uniq_pending_exchange_request_per_requester_skill"
+                        ),
+                    )
+                ],
             },
         ),
     ]
