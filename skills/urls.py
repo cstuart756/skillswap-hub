@@ -1,5 +1,12 @@
 from django.urls import path
-from .views import SkillListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView
+
+from .views import (
+    SkillListView,
+    SkillDetailView,
+    SkillCreateView,
+    SkillUpdateView,
+    SkillDeleteView,
+)
 
 urlpatterns = [
     path("", SkillListView.as_view(), name="skill_list"),

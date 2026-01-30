@@ -1,8 +1,13 @@
 from django.db import models
 from django.conf import settings
 
+
 class ExchangeDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="exchange_details")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="exchange_details",
+    )
     full_name = models.CharField(max_length=120)
     email = models.EmailField()
     phone = models.CharField(max_length=40, blank=True)

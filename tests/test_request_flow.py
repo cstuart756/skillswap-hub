@@ -7,13 +7,27 @@ from exchanges.models import ExchangeRequest
 
 User = get_user_model()
 
+
 @pytest.mark.django_db
 def test_request_lifecycle_permissions(client):
-    owner = User.objects.create_user(username="owner", email="owner@example.com", password="pass12345")
-    requester = User.objects.create_user(username="req", email="req@example.com", password="pass12345")
+    owner = User.objects.create_user(
+        username="owner",
+        email="owner@example.com",
+        password="pass12345",
+    )
+    requester = User.objects.create_user(
+        username="req",
+        email="req@example.com",
+        password="pass12345",
+    )
 
     cat = Category.objects.create(name="Design")
-    skill = Skill.objects.create(owner=owner, category=cat, title="Figma Basics", description="Learn Figma.")
+    skill = Skill.objects.create(
+        owner=owner,
+        category=cat,
+        title="Figma Basics",
+        description="Learn Figma.",
+    )
 
     client.login(username="req", password="pass12345")
     resp = client.post(reverse("exchange_request_create", args=[skill.id]))

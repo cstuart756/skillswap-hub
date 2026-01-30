@@ -5,6 +5,7 @@ from .axe_utils import run_axe
 
 pytestmark = pytest.mark.django_db
 
+
 def login(page, base_url, identifier, password):
     page.goto(base_url + reverse("login"))
     page.fill('input[name="username"]', identifier)
@@ -12,9 +13,11 @@ def login(page, base_url, identifier, password):
     page.click('button[type="submit"]')
     page.wait_for_load_state("networkidle")
 
+
 def assert_no_serious_violations(page):
     violations = run_axe(page, included_impacts={"critical", "serious"})
     assert violations == [], f"Axe violations found: {violations}"
+
 
 def test_a11y_skill_list(base_url, seeded_data):
     with sync_playwright() as p:
@@ -23,6 +26,7 @@ def test_a11y_skill_list(base_url, seeded_data):
         page.goto(base_url + reverse("skill_list"))
         assert_no_serious_violations(page)
         browser.close()
+
 
 def test_a11y_skill_detail(base_url, seeded_data):
     skill = seeded_data["skill"]
@@ -33,6 +37,7 @@ def test_a11y_skill_detail(base_url, seeded_data):
         assert_no_serious_violations(page)
         browser.close()
 
+
 def test_a11y_login_page(base_url, seeded_data):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -40,6 +45,7 @@ def test_a11y_login_page(base_url, seeded_data):
         page.goto(base_url + reverse("login"))
         assert_no_serious_violations(page)
         browser.close()
+
 
 def test_a11y_dashboard_authenticated(base_url, seeded_data):
     requester = seeded_data["requester"]

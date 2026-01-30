@@ -4,7 +4,8 @@ from axe_playwright_python.sync_playwright import Axe
 def _results_to_dict(results):
     """
     Normalize AxeResults (or similar) into a plain dict.
-    Supports multiple versions of axe-playwright-python.
+    Supports multiple versions of
+    axe-playwright-python.
     """
     if isinstance(results, dict):
         return results
@@ -16,22 +17,27 @@ def _results_to_dict(results):
                 data = getattr(results, method_name)
                 if callable(data):
                     data = data()
-                # to_json might return a dict or a JSON string depending on version
+                # to_json might return a dict or a JSON string
+                # depending on version
                 if isinstance(data, dict):
                     return data
-            except:
-                pass
+            except Exception:
+                continue
 
-    # If it has attribute access like results.violations, we can synthesize dict
-    violations_attr = getattr(results, "violations", None)
+    # If it has attribute access like results.violations, synthesize
+    violations_attr = getattr(
+        results,
+        "violations",
+        None,
+    )
     if violations_attr is not None:
         return {"violations": violations_attr}
 
     # Try direct access for AxeResults
     try:
-        if hasattr(results, 'violations'):
+        if hasattr(results, "violations"):
             return {"violations": results.violations}
-    except:
+    except Exception:
         pass
 
     # Try other attributes
@@ -42,25 +48,19 @@ def _results_to_dict(results):
                 if isinstance(attr, dict):
                     if "violations" in attr:
                         return attr
-                    else:
-                        return {"violations": attr.get("violations", [])}
+                    return {"violations": attr.get("violations", [])}
                 elif isinstance(attr, list):
                     return {"violations": attr}
-        except:
-            pass
+        except Exception:
+            continue
 
     # Try __dict__
     try:
         d = results.__dict__
         if isinstance(d, dict) and "violations" in d:
             return d
-    except:
+    except Exception:
         pass
-
-    # Fallback: assume no violations
-    return {"violations": []}
-
-    raise TypeError(f"Unexpected axe results type: {type(results)!r}")
 
     # Fallback: assume no violations
     return {"violations": []}

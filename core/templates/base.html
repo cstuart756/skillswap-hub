@@ -48,12 +48,8 @@
 
     <div class="container my-3">{% include "includes/_messages.html" %}</div>
 
-    <main
-      id="main"
-      class="container mb-5 position-relative"
-      style="min-height: 70vh"
-    >
-      <div style="position: relative; z-index: 1">
+    <main id="main" class="container mb-5 position-relative main-content">
+      <div class="content-wrapper">
         {% block content %}{% endblock %}
       </div>
     </main>

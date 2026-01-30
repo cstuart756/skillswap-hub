@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+
 class Category(models.Model):
     name = models.CharField(max_length=80, unique=True)
     slug = models.SlugField(max_length=90, unique=True, blank=True)
@@ -18,9 +19,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Skill(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="skills")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="skills")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="skills",
+    )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="skills",
+    )
     title = models.CharField(max_length=120)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

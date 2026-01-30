@@ -14,8 +14,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="ExchangeDetail",
             fields=[
-                ("id", models.BigAutoField(auto_created=True,
-                 primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ("full_name", models.CharField(max_length=120)),
                 ("email", models.EmailField(max_length=254)),
                 ("phone", models.CharField(blank=True, max_length=40)),
@@ -23,8 +30,11 @@ class Migration(migrations.Migration):
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 (
                     "user",
-                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                      related_name="exchange_details", to=settings.AUTH_USER_MODEL),
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="exchange_details",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
                 ),
             ],
             options={
