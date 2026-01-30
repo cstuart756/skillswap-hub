@@ -225,6 +225,7 @@ Checklist:
 - ✅ Add contact details
 - ✅ Exchange contact details
 - ✅ Logout
+- ✅ PEP8 check (pycodestyle)
 
 <details>
 <summary>Lighthouse Desktop</summary>
