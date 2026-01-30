@@ -247,9 +247,31 @@ Checklist:
 
 ## Deployment
 
-- The project includes `Procfile` and `runtime.txt` for platform deployments.
-- Configure production settings for security (e.g., `DEBUG=False`, secure cookies, allowed hosts).
-- Use environment variables for secrets and database configuration.
+### Deploy to Heroku
+
+1. Create a Heroku app:
+   - `heroku create skillswap-hub`
+2. Add the Postgres addon:
+   - `heroku addons:create heroku-postgresql:hobby-dev`
+3. Configure environment variables:
+   - `heroku config:set SECRET_KEY=your-secret-key`
+   - `heroku config:set DEBUG=False`
+   - `heroku config:set ALLOWED_HOSTS=your-app-name.herokuapp.com`
+   - `heroku config:set DJANGO_CSRF_TRUSTED_ORIGINS=https://your-app-name.herokuapp.com`
+4. Push to Heroku:
+   - `git push heroku main`
+5. Apply migrations:
+   - `heroku run python manage.py migrate`
+6. (Optional) Seed sample data:
+   - `heroku run python manage.py seed_sample_data`
+7. Collect static files (if required):
+   - `heroku run python manage.py collectstatic --noinput`
+8. Open the app:
+   - `heroku open`
+
+Notes:
+- This project already includes a `Procfile` and `runtime.txt`.
+- For production, keep `DEBUG=False` and use environment variables for secrets.
 
 ## Security
 
