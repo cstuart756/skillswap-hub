@@ -228,16 +228,27 @@ Checklist:
 - ✅ PEP8 check (pycodestyle)
 
 <details>
-<summary>Lighthouse Desktop</summary>
+<summary>Accessibility (WAVE) - No accessibility errors</summary>
 
-![Lighthouse Desktop](static/brand/skillswaplighthousedesktop.png)
+![WAVE accessibility report (no errors)](docs/testing-accessibility.png)
+
+</details>
+
+### PageSpeed Insights (latest)
+
+100% accessibility, best practice and SEO
+
+<details>
+<summary>Desktop</summary>
+
+![PageSpeed Insights desktop](docs/testing-pagespeed-desktop.png)
 
 </details>
 
 <details>
-<summary>Lighthouse Mobile</summary>
+<summary>Mobile</summary>
 
-![Lighthouse Mobile](static/brand/skillswaplighthousemobile.png)
+![PageSpeed Insights mobile](docs/testing-pagespeed-mobile.png)
 
 </details>
 
