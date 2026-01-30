@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#f8f8f8" />
+  <rect x="40" y="40" width="1120" height="720" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="80" y="80" width="1040" height="60" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="120" font-family="Arial" font-size="20" fill="#333">Header / Navigation</text>
+  <rect x="80" y="160" width="1040" height="140" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="240" font-family="Arial" font-size="18" fill="#333">Hero / Search</text>
+  <rect x="80" y="320" width="320" height="180" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="440" y="320" width="320" height="180" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="800" y="320" width="320" height="180" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="430" font-family="Arial" font-size="16" fill="#333">Skill cards</text>
+  <rect x="80" y="520" width="1040" height="200" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="620" font-family="Arial" font-size="16" fill="#333">Content / Footer</text>
+  <text x="80" y="760" font-family="Arial" font-size="16" fill="#333">Wireframe - Desktop</text>
+</svg>

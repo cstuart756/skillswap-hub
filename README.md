@@ -1,85 +1,37 @@
-
 ![SkillSwap Hub logo](static/brand/skillswap-logo.svg)
+
+# SkillSwap Hub
 
 - [Project board](https://github.com/users/cstuart756/projects/10/views/1)
 - [Live site](https://skillswap-hub-cstuart756-df93470f789d.herokuapp.com/)
 
-# UI Wireframes
+## Table of Contents
 
-Below are the main UI wireframes for the SkillSwap Hub project. These illustrate the core user flows and admin features.
-
-
-### Desktop Views
-
-#### Skill Listings, User Dashboard, Create/Edit Skill
-![Skill Listings, User Dashboard, Create/Edit Skill](static/brand/desktopwireframe.png)
-
-#### Skill Listings, Admin Moderation, Create/Edit Skill
-![Skill Listings, Admin Moderation, Create/Edit Skill](static/brand/dashboard.png)
-
-#### Desktop View Example
-![Desktop View](static/brand/desktop%20view.png)
-
-#### Browse Skills
-![Browse Skills](static/brand/browseskills.png)
-
-#### Exchange Details
-![Exchange Details](static/brand/exchangedetails.png)
-
-#### Exchange Submitted
-![Exchange Submitted](static/brand/exchangesubmitted.png)
-
-#### Home Page
-![Home Page](static/brand/skillswaphomepage.png)
-
-### Mobile Views
-
-#### Skill Listings, Skill Detail, Login/Register, User Dashboard, Create/Edit Skill
-![Mobile Skill Listings, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe.png)
-
-#### Home/Skill Listings, Skill Detail, Login/Register, Dashboard, Create/Edit Skill
-![Mobile Home, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe0.png)
-
-#### Skill Listings, Skill Detail, User Dashboard, Create/Edit Skill
-![Mobile Skill Listings, Detail, Dashboard, Create/Edit](static/brand/mobileview.png)
-
-#### Tablet Wireframe
-![Tablet Wireframe](static/brand/tabletwireframe.png)
-
-#### Tablet Wireframe 2
-![Tablet Wireframe 2](static/brand/tabletwireframe0.png)
-
-#### Mobile Wireframe
-![Mobile Wireframe](static/brand/mobilewireframe.png)
-
-#### Mobile Wireframe 2
-![Mobile Wireframe 2](static/brand/mobilewireframe0.png)
-
-#### Offer a Skill
-![Offer a Skill](static/brand/offer%20a%20skill.png)
-
-#### Login
-![Login](static/brand/skillswaplogin.png)
-
-#### Login 2
-![Login 2](static/brand/skillswaplogin0.png)
-
-#### Lighthouse Desktop
-![Lighthouse Desktop](static/brand/skillswaplighthousedesktop.png)
-
-#### Lighthouse Mobile
-![Lighthouse Mobile](static/brand/skillswaplighthousemobile.png)
-
-### Project Board
-
-#### GitHub Project Board Example
-![GitHub Project Board](static/brand/skillswapprojectboard.png)
-
-# SkillSwap Hub
+- [Project Board](#project-board)
+- [Overview](#overview)
+- [Features](#features)
+- [Final Product](#final-product)
+- [Wireframes](#wireframes)
+- [Tech Stack](#tech-stack)
+- [Setup](#setup)
+- [Environment Variables](#environment-variables)
+- [Testing](#testing)
+- [Accessibility](#accessibility)
+- [Deployment](#deployment)
+- [Security](#security)
+- [Database Schema (ERD)](#database-schema-erd)
+- [User Stories (MoSCoW)](#user-stories-moscow)
+- [Project Structure](#project-structure)
+- [AI Tooling (Reflection)](#ai-tooling-reflection)
+  - [Responsible AI Use](#responsible-ai-use)
 
 ## Overview
 
 SkillSwap Hub is a Django-based full-stack web application for listing skills and creating exchange requests between users. It provides authentication, CRUD features, and a clean, accessible UI.
+
+#### GitHub Project Board
+
+![GitHub Project Board](static/brand/skillswapprojectboard.png)
 
 ## Features
 
@@ -90,20 +42,151 @@ SkillSwap Hub is a Django-based full-stack web application for listing skills an
 - Role-based access controls for protected actions
 - Responsive, accessible UI with clear validation and feedback
 
+## Wireframes
+
+Below are the main UI wireframes for the SkillSwap Hub project. These illustrate the core user flows and admin features.
+
+<details>
+<summary>Desktop - Skill Listings, User Dashboard, Create/Edit Skill</summary>
+
+![Skill Listings, User Dashboard, Create/Edit Skill](static/brand/desktopwireframe.png)
+
+</details>
+
+<details>
+<summary>Mobile - Skill Listings, Skill Detail, Login/Register, User Dashboard, Create/Edit Skill</summary>
+
+![Mobile Skill Listings, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe.png)
+
+</details>
+
+<details>
+<summary>Mobile - Home/Skill Listings, Skill Detail, Login/Register, Dashboard, Create/Edit Skill</summary>
+
+![Mobile Home, Detail, Login, Dashboard, Create/Edit](static/brand/mobilewireframe0.png)
+
+</details>
+
+<details>
+<summary>Tablet Wireframe</summary>
+
+![Tablet Wireframe](static/brand/tabletwireframe.png)
+
+</details>
+
+<details>
+<summary>Tablet Wireframe 2</summary>
+
+![Tablet Wireframe 2](static/brand/tabletwireframe0.png)
+
+</details>
+
+<details>
+<summary>Mobile Wireframe</summary>
+
+![Mobile Wireframe](static/brand/mobilewireframe.png)
+
+</details>
+
+<details>
+<summary>Mobile Wireframe 2</summary>
+
+![Mobile Wireframe 2](static/brand/mobilewireframe0.png)
+
+</details>
+
+## Final Product
+
+<details>
+<summary>Desktop</summary>
+
+![Final product desktop view](docs/final-product-desktop.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Final product mobile view](docs/final-product-mobile.png)
+
+</details>
+
+<details>
+<summary>Login</summary>
+
+![Final product login](docs/final-product-login.png)
+
+</details>
+
+<details>
+<summary>Register</summary>
+
+![Final product register](docs/final-product-register.png)
+
+</details>
+
+<details>
+<summary>Offer Skill</summary>
+
+![Final product offer skill](docs/final-product-offer-skill.png)
+
+</details>
+
+<details>
+<summary>Skill Details</summary>
+
+![Final product skill details](docs/final-product-skill-details.png)
+
+</details>
+
+<details>
+<summary>Exchange Dashboard</summary>
+
+![Final product exchange dashboard](docs/final-product-exchange-dashboard.png)
+
+</details>
+
+<details>
+<summary>Exchange Details</summary>
+
+![Exchange Details](static/brand/exchangedetails.png)
+
+</details>
+
+<details>
+<summary>Exchange Submitted</summary>
+
+![Exchange Submitted](static/brand/exchangesubmitted.png)
+
+</details>
+
 ## Tech Stack
 
+- Python 3
 - Django
 - SQLite (development)
+- PostgreSQL (production)
 - HTML/CSS
+- pytest + pytest-django
+- Playwright + axe-playwright (accessibility testing)
+- Gunicorn + WhiteNoise
 
 ## Setup
 
-1. Create and activate a virtual environment.
-2. Install dependencies:
+1. Clone the repository:
+   - `git clone https://github.com/cstuart756/skillswap-hub.git`
+2. Change into the project directory:
+   - `cd skillswap-hub`
+3. Create a virtual environment:
+   - `python -m venv .venv`
+4. Activate the virtual environment:
+   - macOS/Linux: `source .venv/bin/activate`
+   - Windows: `.venv\Scripts\activate`
+5. Install dependencies:
    - `pip install -r requirements.txt`
-3. Apply migrations:
+6. Apply migrations:
    - `python manage.py migrate`
-4. Run the server:
+7. Run the server:
    - `python manage.py runserver`
 
 ## Environment Variables
@@ -116,9 +199,45 @@ Store secrets in environment variables and keep them out of version control. Typ
 
 ## Testing
 
+### Automated testing
+
 Run the test suite:
 
 - `pytest`
+
+### Pytest Results
+
+- Latest run (2026-01-30): 1 test passed
+- Scope: [tests/test_request_flow.py](tests/test_request_flow.py)
+
+### Manual testing
+
+Checklist:
+
+- ✅ Register
+- ✅ Login
+- ✅ Offer skill
+- ✅ View skills
+- ✅ Register interest in a skill
+- ✅ View sent and received requests
+- ✅ Accept request
+- ✅ Add contact details
+- ✅ Exchange contact details
+- ✅ Logout
+
+<details>
+<summary>Lighthouse Desktop</summary>
+
+![Lighthouse Desktop](static/brand/skillswaplighthousedesktop.png)
+
+</details>
+
+<details>
+<summary>Lighthouse Mobile</summary>
+
+![Lighthouse Mobile](static/brand/skillswaplighthousemobile.png)
+
+</details>
 
 ## Accessibility
 
@@ -247,8 +366,12 @@ Key relationships:
 - `skills/` skill listings and CRUD
 - `exchanges/` exchange requests and workflow
 - `core/` project configuration
-- `templates/` HTML templates
-- `tests/` automated tests
+- `templates/` base templates and shared includes
+- `static/` CSS and shared assets
+- `docs/` documentation images (final product and wireframes)
+- `tests/` automated tests (pytest)
+- `manage.py` Django management entry point
+- `requirements.txt` Python dependencies
 
 ## AI Tooling (Reflection)
 

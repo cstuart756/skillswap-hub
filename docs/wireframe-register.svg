@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#f8f8f8" />
+  <rect x="40" y="40" width="1120" height="720" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="80" y="80" width="1040" height="60" fill="none" stroke="#333" stroke-width="2" />
+  <text x="100" y="120" font-family="Arial" font-size="20" fill="#333">Header</text>
+  <rect x="320" y="190" width="560" height="420" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="360" y="250" width="480" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="360" y="310" width="480" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="360" y="370" width="480" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="360" y="430" width="480" height="40" fill="none" stroke="#333" stroke-width="2" />
+  <rect x="360" y="490" width="480" height="44" fill="none" stroke="#333" stroke-width="2" />
+  <text x="380" y="280" font-family="Arial" font-size="16" fill="#333">Username</text>
+  <text x="380" y="340" font-family="Arial" font-size="16" fill="#333">Email</text>
+  <text x="380" y="400" font-family="Arial" font-size="16" fill="#333">Password</text>
+  <text x="380" y="460" font-family="Arial" font-size="16" fill="#333">Confirm password</text>
+  <text x="380" y="520" font-family="Arial" font-size="16" fill="#333">Create account</text>
+  <text x="320" y="630" font-family="Arial" font-size="16" fill="#333">Wireframe - Register</text>
+</svg>

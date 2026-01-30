@@ -26,7 +26,8 @@ class SkillListView(ListView):
         sort = (self.request.GET.get("sort") or "new").strip()
 
         if q:
-            qs = qs.filter(Q(title__icontains=q) | Q(description__icontains=q) | Q(owner__username__icontains=q))
+            qs = qs.filter(Q(title__icontains=q) | Q(
+                description__icontains=q) | Q(owner__username__icontains=q))
 
         if cat:
             if cat.isdigit():
@@ -49,8 +50,11 @@ class SkillListView(ListView):
         ctx["q"] = (self.request.GET.get("q") or "").strip()
         ctx["category"] = (self.request.GET.get("category") or "").strip()
         ctx["sort"] = (self.request.GET.get("sort") or "new").strip()
+        params = self.request.GET.copy()
+        if "page" in params:
+            params.pop("page")
+        ctx["querystring"] = params.urlencode()
         return ctx
-
 
 
 class SkillDetailView(DetailView):
@@ -66,11 +70,13 @@ class SkillDetailView(DetailView):
         owner_contact = None
         if user.is_authenticated and user != skill.owner:
             # Check if the user has an accepted exchange request for this skill
-            accepted = ExchangeRequest.objects.filter(skill=skill, requester=user, status=ExchangeRequest.Status.ACCEPTED).exists()
+            accepted = ExchangeRequest.objects.filter(
+                skill=skill, requester=user, status=ExchangeRequest.Status.ACCEPTED).exists()
             if accepted:
                 show_owner_contact = True
                 # Get the latest ExchangeDetail for the owner, if any
-                owner_contact = ExchangeDetail.objects.filter(user=skill.owner).order_by('-created_at').first()
+                owner_contact = ExchangeDetail.objects.filter(
+                    user=skill.owner).order_by('-created_at').first()
         context['show_owner_contact'] = show_owner_contact
         context['owner_contact'] = owner_contact
         return context
@@ -83,7 +89,8 @@ class OwnerRequiredMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.owner_id != request.user.id:
-            messages.error(request, "You do not have permission to access that resource.")
+            messages.error(
+                request, "You do not have permission to access that resource.")
             raise Http404("Not found")
         return super().dispatch(request, *args, **kwargs)
 

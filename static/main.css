@@ -1,15 +1,15 @@
 :root {
-  --ss-primary: #4f46e5;
-  --ss-primary-600: #4338ca;
+  --ss-primary: #3730a3;
+  --ss-primary-600: #312e81;
   --ss-accent: #f59e0b;
-  --ss-success: #10b981;
-  --ss-danger: #ef4444;
+  --ss-success: #047857;
+  --ss-danger: #b91c1c;
   --ss-bg: #f8fafc;
   --ss-surface: #ffffff;
   --ss-text: #0f172a;
-  --ss-muted: #475569;
+  --ss-muted: #334155;
   --ss-border: #e2e8f0;
-  --ss-gradient: linear-gradient(120deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+  --ss-gradient: linear-gradient(120deg, #3730a3 0%, #5b21b6 50%, #0e7490 100%);
   --ss-card-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
   --ss-soft-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
 }
@@ -132,7 +132,7 @@ h6,
 
 .alert-info {
   background: rgba(79, 70, 229, 0.12);
-  color: var(--ss-primary);
+  color: #312e81;
   border: 1px solid rgba(79, 70, 229, 0.16);
 }
 
