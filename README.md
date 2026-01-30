@@ -24,6 +24,7 @@
 - [Project Structure](#project-structure)
 - [AI Tooling (Reflection)](#ai-tooling-reflection)
   - [Responsible AI Use](#responsible-ai-use)
+- [Credits](#credits)
 
 ## Overview
 
@@ -270,6 +271,7 @@ Checklist:
    - `heroku open`
 
 Notes:
+
 - This project already includes a `Procfile` and `runtime.txt`.
 - For production, keep `DEBUG=False` and use environment variables for secrets.
 
@@ -439,3 +441,12 @@ AI tools were used strictly as a development assistant, not as an autonomous cod
 - Integrated selectively
 
 This approach reflects real-world software engineering workflows, where AI can be used as a productivity aid, not a replacement for developer understanding or accountability.
+
+## Credits
+
+- Django framework and documentation
+- Bootstrap UI framework
+- Heroku deployment platform
+- Lighthouse auditing tool
+- WAVE (WebAIM) accessibility evaluation tool
+- AI tooling: GPT models and Claude models as per above section
